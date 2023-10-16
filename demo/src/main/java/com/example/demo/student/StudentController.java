@@ -1,9 +1,7 @@
 package com.example.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -24,16 +22,15 @@ public class StudentController {
 
     @GetMapping("")
     public List<Student> getStudents(){
-        //return List.of(new Student());
         return studentService.getStudents();
-        /*return List.of(new Student(1L,
-                "Mariam",
-                "Mariam.jamal@gmail.com",
-                LocalDate.of(2000, Month.JANUARY, 5),
-                21
-        ));
 
-         */
+    }
+
+    //Post mapping takes a post command from the web
+    //Request body is what we take from and map it to a student
+    @PostMapping
+    public void registerNewStudent(@RequestBody Student student){
+        studentService.addNewStudent(student);
     }
 
 
